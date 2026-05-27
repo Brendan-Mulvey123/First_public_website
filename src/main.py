@@ -17,19 +17,12 @@ def main():
         basepath = "./"
     else:
         basepath = sys.argv[1]
-    if not os.path.isdir(basepath):
-        print("ERROR: the basepath folder \"{basepath}\" does not exist or is not a folder")
-        exit(1)
-    else:
-        if basepath[-1] != "/":
-            basepath = basepath + "/"
 
-    public_dir = os.path.join(basepath,"docs")
-    static_dir = os.path.join(basepath,"static")
-    content_dir = os.path.join(basepath,"content")
+    public_dir = "./docs"
+    static_dir = "./static"
+    content_dir = "./content"
     copy_static_to_public(static_dir, public_dir)
-    #generate_page("content/index.md", "template.html", "public/index.html")
-    generate_pages_recursive(content_dir, os.path.join(basepath, "template.html"), public_dir, basepath)
+    generate_pages_recursive(content_dir, "./template.html", public_dir, basepath)
 
 
 def copy_static_to_public(source_dir, dest_dir):
@@ -85,7 +78,7 @@ def generate_page(from_path, template_path, dest_path, basepath):
     os.makedirs(os.path.dirname(dest_path), 0o775, exist_ok=True)
     try:
         with open(dest_path, 'w') as f:
-            f.write(temp_html2)
+            f.write(temp_html4)
     except IOError as e:
         print(f"An error occurred: {e}")
 
